@@ -33,8 +33,8 @@ def train_model():
     global model, data
     if request.method == 'POST':
         model_type = request.form['model']
-        X = data[['feature1']].values  # Adjust according to data
-        y = data['target'].values      # Adjust according to data
+        X = [2,4,6,4,3,4,7,5]  # Adjust according to data
+        y = [2,2,6,8,3,1,6,8]       # Adjust according to data
 
         if model_type == 'LinearRegression':
             model = LinearRegression()
@@ -47,8 +47,8 @@ def plot_results():
     global model, data
     if model is not None:
         # Plot data and predictions
-        X = data[['feature1']].values  # Adjust according to data
-        y = data['target'].values      # Adjust according to data
+        X = [2,4,6,4,3,4,7,5]  # Adjust according to data
+        y = [2,2,6,8,3,1,6,8]      # Adjust according to data
         predictions = model.predict(X)
 
         plt.figure()
