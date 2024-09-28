@@ -4,6 +4,8 @@ from sklearn import datasets
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+import base64
+import io
 
 
 app = Flask(__name__)
@@ -63,15 +65,15 @@ def plot_results():
 
     plt.scatter(diabetes_X_test,diabetes_Y_test)
     plt.plot(diabetes_X_test,diabetes_y_predicted)
-    plt.show()
+    # plt.show()
 
-        # # Save plot to string buffer and encode
-        # img = io.BytesIO()
-        # plt.savefig(img, format='png')
-        # img.seek(0)
-        # plot_url = base64.b64encode(img.getvalue()).decode()
+        # Save plot to string buffer and encode
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode()
 
-        # return render_template('plot.html', plot_url=plot_url)
+    return render_template('plot.html', plot_url=plot_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
