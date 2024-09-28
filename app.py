@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
-import io
-import base64
+
 
 app = Flask(__name__)
 
@@ -44,25 +43,15 @@ def train_model():
 
 @app.route('/plot_results')
 def plot_results():
-    global model, data
-    if model is not None:
-        # Plot data and predictions
-        X = [2,4,6,4,3,4,7,5]  # Adjust according to data
-        y = [2,2,6,8,3,1,6,8]      # Adjust according to data
-        predictions = model.predict(X)
+    pass
 
-        plt.figure()
-        plt.scatter(X, y, label='Original Data')
-        plt.plot(X, predictions, color='red', label='Model Prediction')
-        plt.legend()
+        # # Save plot to string buffer and encode
+        # img = io.BytesIO()
+        # plt.savefig(img, format='png')
+        # img.seek(0)
+        # plot_url = base64.b64encode(img.getvalue()).decode()
 
-        # Save plot to string buffer and encode
-        img = io.BytesIO()
-        plt.savefig(img, format='png')
-        img.seek(0)
-        plot_url = base64.b64encode(img.getvalue()).decode()
-
-        return render_template('plot.html', plot_url=plot_url)
+        # return render_template('plot.html', plot_url=plot_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
