@@ -54,12 +54,15 @@ def plot_results():
     diabetes_Y_train = diabetes.target[:-30]
     diabetes_Y_test = diabetes.target[-30:]
 
-    model = linear_model.LinearRegression()
+    model = LinearRegression()
 
     model.fit(diabetes_X_train,diabetes_Y_train)
 
     diabetes_y_predicted = model.predict(diabetes_X_test)
-    pass
+
+    plt.scatter(diabetes_X_test,diabetes_Y_test)
+    plt.plot(diabetes_X_test,diabetes_y_predicted)
+    plt.show()
 
         # # Save plot to string buffer and encode
         # img = io.BytesIO()
