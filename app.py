@@ -45,6 +45,7 @@ def train_model():
 
 @app.route('/plot_results')
 def plot_results():
+    # Testing and seeing how the model even shows data on the website
     diabetes = datasets.load_diabetes()
     diabetes_X = diabetes.data[:,np.newaxis, 2]
 
